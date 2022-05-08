@@ -19,17 +19,20 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "./src/index.html",
-        })
+        }),
+        new MiniCssExtractPlugin()
     ],
 
     module: {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
+                
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.css$/i,
+                //path: path.resolve(__dirname, ".src/assets/styles"),
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
