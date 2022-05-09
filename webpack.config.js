@@ -13,7 +13,9 @@ module.exports = {
     output: {
         filename: "[hash].js",
         path: path.resolve(__dirname, "dist"),
-        clean: true,
+        clean: {
+            keep: /\.git/,
+        },
     },
 
     plugins: [

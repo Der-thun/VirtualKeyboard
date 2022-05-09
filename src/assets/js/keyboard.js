@@ -8,7 +8,7 @@
 
 const dictRuShiftFirstLine = [
     'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+' 
-]*/
+]
 
 
 const witchKey = {
@@ -17,7 +17,7 @@ const witchKey = {
     20: 'Caps', 65: 'ф', 83: 'ы', 68: 'в', 70: 'а', 71: 'п', 72: 'р', 74: 'о', 75: 'л', 76: 'д', 192: 'ж', 222: 'э', 13: 'Enter',
     16: 'Shift', 90: 'я', 88: 'ч', 67: 'с', 86: 'м', 66: 'и', 78: 'т', 77: 'ь', 188: 'б', 190: 'ю', 191: '.', 38: '▲', 16: 'Shift',
     17: 'Ctrl', 91: 'Win', 18: 'Alt', 32: 'Space', 37: '◄', 40: '▼', 39: '►', 17: 'Ctrl'
-    }
+    };
 
 const dictEn = [
     "`", '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
@@ -25,14 +25,15 @@ const dictEn = [
     'CapsLock', "a", "s", "d", 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 
     'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/',  'Up', 'Shift',
     'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Left', 'Down', 'Right', 'Ctrl'
-]
+];
 
 const dictEnShiftFirstLine = [
     '¬', '!', '"', '£', '$', '%', '^', '&', '*', '(', ')', '_', '+' 
-]
+];
 
+*/
+export class Keyboard  {
 
- export class Keyboard  {
     elements = {
         main: null,
         keysContainer : null,
@@ -52,12 +53,13 @@ const dictEnShiftFirstLine = [
         value: '',
         capsLock: false,
         shift: false,
+        shiftReal: false,
         dictRu: [
             'ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
             'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', "\\", 'Del',
             'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',
-            'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift',
-            'Ctrl', 'Win', 'Alt', 'Space', 'Alt', '◄', '▼', '►', 'Ctrl'
+            'ShiftL', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'ShiftR',
+            'CtrlL', 'Win', 'AltL', 'Space', 'AltR', '◄', '▼', '►', 'CtrlR'
         ],
         dictRuShiftFirstLine: [
             'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+' 
@@ -68,13 +70,47 @@ const dictEnShiftFirstLine = [
         ],
 
         whichKey: {
-            220: 'ё', 49: '1', 50: '2', 51: '3', 52: '4', 53: '5', 54: '6', 55: '7', 56: '8', 57: '9', 48: '0', 187: '-', 219: '=', 8: 'backspace',
-            9: 'tab', 81: 'й', 87: 'ц', 69: 'у', 82: 'к', 84: 'е', 89: 'н', 85: 'г', 73: 'ш', 79: 'щ', 80: 'з', 221: 'х', 186: 'ъ', 191: '\\', 46: 'del',
-            20: 'capslock', 65: 'ф', 83: 'ы', 68: 'в', 70: 'а', 71: 'п', 72: 'р', 74: 'о', 75: 'л', 76: 'д', 192: 'ж', 222: 'э', 13: 'enter',
-            16: 'shift', 90: 'я', 88: 'ч', 67: 'с', 86: 'м', 66: 'и', 78: 'т', 77: 'ь', 188: 'б', 190: 'ю', 189: '.', 38: '▲', 16: 'shift',
-            17: 'ctrl', 91: 'Win', 18: 'alt', 32: 'space', 37: '◄', 40: '▼', 39: '►', 17: 'ctrl'
-            }
+            220: 'ё', 49: '1', 50: '2', 51: '3', 52: '4', 53: '5', 54: '6', 55: '7', 56: '8', 57: '9', 48: '0', 187: '-', 219: '=', /*8: 'backspace',*/
+            /*9: 'tab',*/ 81: 'й', 87: 'ц', 69: 'у', 82: 'к', 84: 'е', 89: 'н', 85: 'г', 73: 'ш', 79: 'щ', 80: 'з', 221: 'х', 186: 'ъ', 191: '\\',// 46: 'del',
+            /*20: 'capslock', */65: 'ф', 83: 'ы', 68: 'в', 70: 'а', 71: 'п', 72: 'р', 74: 'о', 75: 'л', 76: 'д', 192: 'ж', 222: 'э',// 13: 'enter',
+            /*16: 'shift',*/ 90: 'я', 88: 'ч', 67: 'с', 86: 'м', 66: 'и', 78: 'т', 77: 'ь', 188: 'б', 190: 'ю', 189: '.', 38: '▲',/* 16: 'shift',*/
+            /*17: 'ctrl', 91: 'Win', 18: 'alt', 32: 'space', */37: '◄', 40: '▼', 39: '►',/* 17: 'ctrl'*/
+        },
 
+        codeKey: {            
+            Backspace: 'Backspace',
+            Tab: 'Tab',  
+            Delete: 'Del',
+            CapsLock: 'CapsLock',  
+            Enter: 'Enter',
+            ShiftLeft: 'Shift',  
+            ArrowUp: 'Up',
+            ShiftRight: 'Shift',
+            ControlLeft: 'Ctrl',
+            MetaLeft: 'Win',
+            AltLeft: 'Alt',
+            Space: 'Space',
+            AltRight: 'Alt',
+            ArrowLeft: 'Left',
+            ArrowDown: 'Down',
+            ControlRight: 'Ctrl'
+        },
+
+        codeArray : [
+            'Backspace',
+            'Tab',  
+            'Delete',
+            'CapsLock',  
+            'Enter',
+            'ShiftLeft',
+            'ShiftRight',
+            'ControlLeft',
+            'MetaLeft',
+            'AltLeft',
+            'Space',
+            'AltRight',
+            'ControlRight'
+        ]
     }
 
     init() {
@@ -120,7 +156,7 @@ const dictEnShiftFirstLine = [
             keyElement.setAttribute("type", "button");
             keyElement.classList.add('key');
             keyElement.textContent = elem;
-
+            
             switch(elem) {
                 case 'Backspace': 
                     keyElement.classList.add('back');
@@ -161,23 +197,46 @@ const dictEnShiftFirstLine = [
                         this._shift()
                     }
                     break;
-                case 'Shift':
-                    keyElement.classList.add('xl');
+                case 'ShiftL':
+                    keyElement.classList.add('xl', 'shiftleft');
+                    keyElement.textContent = 'Shift';
 
                     keyElement.addEventListener('click', () => {
                         this._shift();                        
                     });
                     break;
-                case 'Ctrl':
-                    keyElement.classList.add('l');
+                case 'ShiftR':
+                    keyElement.classList.add('xl', 'shiftright');
+                    keyElement.textContent = 'Shift';
+
+                    keyElement.addEventListener('click', () => {
+                        this._shift();                        
+                    });
+                    break;
+                case 'CtrlL':
+                    keyElement.classList.add('l', 'ctrlleft');
+                    keyElement.textContent = 'Ctrl';
+
+                    this._ctrlKeyPress();
+                    break;
+                case 'CtrlR':
+                    keyElement.classList.add('l', 'ctrlright');
+                    keyElement.textContent = 'Ctrl';
 
                     this._ctrlKeyPress();
                     break;
                 case 'Win':
                     keyElement.classList.add('l');
                     break;
-                case 'Alt':
-                    keyElement.classList.add('l');
+                case 'AltL':
+                    keyElement.classList.add('l', 'altleft');
+                    keyElement.textContent = 'Alt';
+
+                    this._altKeyPress();
+                    break;
+                case 'AltR':
+                    keyElement.classList.add('l', 'altright');
+                    keyElement.textContent = 'Alt';
 
                     this._altKeyPress();
                     break;
@@ -218,7 +277,7 @@ const dictEnShiftFirstLine = [
         let position = textarea.selectionStart;
         let positionEnd = textarea.selectionEnd;
         let text = this.properties.value;
-        let letter = event.target.classList.contains('key') ? event.target.textContent : this.properties.whichKey[event.which]
+        let letter = event.target.classList.contains('key') ? event.target.textContent : (this.properties.shiftReal ? this.properties.whichKey[event.which].toUpperCase() : this.properties.whichKey[event.which].toLowerCase())
        
         if (text.length + 1 !== position) {
             this.properties.value = text.slice(0, position) + letter + text.slice(positionEnd);
@@ -237,8 +296,8 @@ const dictEnShiftFirstLine = [
         let text = this.properties.value;
         
         if (position === positionEnd) {
-            console.log(text.length)
-            console.log(position)
+            
+            
             if (text.length === position) {
                 this.properties.value = text.slice(0, text.length - 1);
             } else {
@@ -262,8 +321,8 @@ const dictEnShiftFirstLine = [
         let text = this.properties.value;
         
         if (position === positionEnd) {
-            console.log(text.length)
-            console.log(position)
+            
+            
             if (position === 0) {
                 this.properties.value = text.slice(1);
             } else {
@@ -307,6 +366,7 @@ const dictEnShiftFirstLine = [
     }
 
     _shift() {
+        console.log('!!!')
         this.properties.shift = !this.properties.shift; 
         for (let i = 0; i < this.properties.dictRuShiftFirstLine.length; i++)  {            
             if (this.elements.keys[i].textContent === this.properties.dictRu[i]) {
@@ -315,7 +375,7 @@ const dictEnShiftFirstLine = [
                 this.elements.keys[i].textContent = this.properties.dictRu[i];
             }       
         }
-        //console.log(1212)
+        
         this._toggleCaps()
     }
 
@@ -327,7 +387,7 @@ const dictEnShiftFirstLine = [
     }
 
     _toggleCaps() {   
-        //console.log(121112)     
+            
         this.properties.capsLock = !this.properties.capsLock;
         this.elements.keys.forEach(key => {              
             if (!this.properties.unToggledKeys.includes(key.innerText.toLowerCase())) {               
@@ -341,48 +401,109 @@ const dictEnShiftFirstLine = [
         document.querySelector('.input').addEventListener('keydown', (e) => {
             e.preventDefault();
             let keysSet = document.querySelectorAll('.key');           
-           
-            keysSet.forEach(elem => {               
-                if (elem.textContent.toLowerCase() === this.properties.whichKey[e.which]) {                    
+           // console.log(e.code)
+            keysSet.forEach(elem => {
+               // console.log(e.code)
+                if (this.properties.codeKey[e.code] === elem.textContent) {
+                //if (this.properties.codeArray.includes(e.code)) {   
+                    console.log(e.code)
+                    //console.log(elem.textContent)
+                    
                     switch (elem.textContent) {
-                        case "Enter" : this._enterKeyPress(); break;
+                        case "Space": this._spaceKeyPress(); elem.classList.add('active'); break;
+                        case 'Backspace': this._backspaceKeyPress(); elem.classList.add('active'); break;
+                        case "Enter" : this._enterKeyPress(); elem.classList.add('active'); break;
                         case 'Shift':
+                            if (e.code === 'ShiftLeft') {
+                                document.querySelector('.shiftleft').classList.add('active');
+                                
+                                
+                            } else {
+                                document.querySelector('.shiftright').classList.add('active');
+                                
+                                
+                            }
+                            if (!this.properties.shiftReal) {
+                                this.properties.shiftReal = true;
+                                this._shift()
+                            }
+                            
+                            break;
+                        case 'CapsLock': 
+                            this._toggleCaps();
+                            elem.classList.toggle('caps-active');
+                            elem.classList.add('active'); 
+                            break;
+                        case 'Tab': this._tabKeyPress(); elem.classList.add('active');break;
+                        case 'Ctrl': 
+                            if (e.code === 'ControlLeft') {
+                                document.querySelector('.ctrlleft').classList.add('active');                            
+                            } else {
+                                document.querySelector('.ctrlright').classList.add('active');
+                            }
+                        
+                        
+                        
+                            this._ctrlKeyPress();  break;
+                        case 'Win': elem.classList.add('active'); break;
+                        case 'Alt': 
+                            if (e.code === 'AltLeft') {
+                                document.querySelector('.altleft').classList.add('active');                            
+                            } else {
+                                document.querySelector('.altright').classList.add('active');
+                            }                       
+                            
+                            this._altKeyPress(); 
+                            break;
+                        case 'Del': this._delKeyPress(); elem.classList.add('active'); break;
+                        default: break;
+                    }
+                    
+                } else if (elem.textContent.toLowerCase() === this.properties.whichKey[e.which]) {                    
+                    switch (elem.textContent) {
+                        //case "Enter" : this._enterKeyPress(); break;
+                        /*case 'Shift':
                             if (!this.properties.shift) {                               
                                 this._shift();
                             }
                             break;
-                        
-                        case "Space": this._spaceKeyPress(); break;
-                        case 'CapsLock': 
+                        */
+                        //case "Space": this._spaceKeyPress(); break;
+                        /*case 'CapsLock': 
                             this._toggleCaps();
                             elem.classList.toggle('caps-active'); 
                             break;
-                        case 'Backspace': this._backspaceKeyPress(); break;
-                        case 'Tab': this._tabKeyPress(); break;
+                            */
+                        //case 'Backspace': this._backspaceKeyPress(); break;
+                        /*case 'Tab': this._tabKeyPress(); break;
                         case 'Ctrl': this._ctrlKeyPress(); break;
                         case 'Win': break;
                         case 'Alt': this._altKeyPress(); break;
-                        case 'Del': this._delKeyPress(); break;
+                        case 'Del': this._delKeyPress(); break;*/
                         default: 
                             this._defaultKeyPress(e);
                             if (this.properties.shift) {
-                                this._shift();
+                               // this._shift();
                             }
-                    }
-
-
-                    
+                    }                   
                     
                     elem.classList.add('active')
-                }
+                } 
             })
         })
 
         document.querySelector('.input').addEventListener('keyup', (e) => {
             let keysSet = document.querySelectorAll('.key');
             keysSet.forEach(elem => {
-                if (elem.textContent.toLowerCase() === this.properties.whichKey[e.which]) {
-                   if (elem.textContent === 'Shift') this._shift()
+                if (this.properties.codeKey[e.code] === elem.textContent) {
+                    elem.classList.remove('active');
+                    if (this.properties.shift) {                               
+                        this._shift();
+                        this.properties.shiftReal = false
+                    }
+                    
+                } else if (elem.textContent.toLowerCase() === this.properties.whichKey[e.which]) {
+                   
                     elem.classList.remove('active')
                 }
             })
