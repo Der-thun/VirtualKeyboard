@@ -348,7 +348,7 @@ const dictEnShiftFirstLine = [
                         case "Enter" : this._enterKeyPress(); break;
                         case 'Shift':
                             if (!this.properties.shift) {                               
-                                this._shift(); break;
+                                this._shift();
                             }
                             break;
                         
@@ -363,7 +363,11 @@ const dictEnShiftFirstLine = [
                         case 'Win': break;
                         case 'Alt': this._altKeyPress(); break;
                         case 'Del': this._delKeyPress(); break;
-                        default: this._defaultKeyPress(e)
+                        default: 
+                            this._defaultKeyPress(e);
+                            if (this.properties.shift) {
+                                this._shift();
+                            }
                     }
 
 
