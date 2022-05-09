@@ -27,6 +27,7 @@ h1 {
     overflow: auto;
     font-family: inherit;
     line-height: 1.15;
+    resize: none;
 }
 
 .keyboard {
