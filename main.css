@@ -1,3 +1,6 @@
+/*!*******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/styles/style.css ***!
+  \*******************************************************************************/
 body {
     display: block;
     font-family: "Work Sans";
@@ -27,6 +30,7 @@ h1 {
     overflow: auto;
     font-family: inherit;
     line-height: 1.15;
+    resize: none;
 }
 
 .keyboard {
