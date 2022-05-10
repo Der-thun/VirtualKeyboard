@@ -50,6 +50,48 @@ export class Keyboard  {
             0: '~', 1: '!', 2: '@', 3: '#', 4: '$', 5: '%', 6: '^', 7: '&', 8: '*', 9: '(', 10: ')', 11: '_', 12: '+', 25: '{', 26: '}', 27: '/', 39: ':', 40: '"', 50: '<', 51: '>', 52: '?'
         },
 
+        shiftRuCode: {
+            Digit1: '!',
+            Digit2: '"',
+            Digit3: '№',
+            Digit4: ';',
+            Digit5: '%',
+            Digit6: ':',
+            Digit7: '?',
+            Digit8: '*',
+            Digit9: '(',
+            Digit0: ')',
+            Minus: '_',
+            IntlYen: '+',
+            Equal: '+',
+            Slash: ',',
+            Backslash: '/',
+        },
+
+        shiftEnCode: {
+            Backquote: '~',
+            Digit1: '!',
+            Digit2: '@',
+            Digit3: '#',
+            Digit4: '$',
+            Digit5: '%',
+            Digit6: '^',
+            Digit7: '&',
+            Digit8: '*',
+            Digit9: '(',
+            Digit0: ')',
+            Minus: '_',
+            IntlYen: '+',
+            Equal: '+',
+            Period: '>',
+            Comma: '<',
+            Backslash: '|',
+            BracketLeft: '{',
+            BracketRight: '}',
+            Semicolon: ':',
+            Quote: '"',
+            Slash: '?',
+        },
 
         unToggledKeys: [
             'backspace', 'tab', 'del', 'capslock', 'enter', 'shift', 'ctrl', 'win', 'alt', 'space'
@@ -327,8 +369,18 @@ export class Keyboard  {
         let positionEnd = textarea.selectionEnd;
         let text = this.properties.value;
         let whichKey = (this.properties.currentLanguage === 'ru') ? this.properties.whichKeyRU : this.properties.whichKeyEN
-        let letter = event.target.classList.contains('key') ? event.target.textContent : (this.properties.capsLock ? whichKey[event.which].toUpperCase() :  whichKey[event.which].toLowerCase() )
+        let shiftedType = (this.properties.currentLanguage === 'ru') ? this.properties.shiftRuCode : this.properties.shiftEnCode
+        let letter
+        
+        if (typeof shiftedType[event.code] !== 'undefined' ) {
+            letter = this.properties.shiftReal ? shiftedType[event.code] : whichKey[event.which]
+            
+        } else {
+            letter = event.target.classList.contains('key') ? event.target.textContent : (this.properties.capsLock ? whichKey[event.which].toUpperCase() :  whichKey[event.which].toLowerCase() )
        
+        }
+        
+        
         if (text.length + 1 !== position) {
             this.properties.value = text.slice(0, position) + letter + text.slice(positionEnd);
         } else {
@@ -497,6 +549,7 @@ export class Keyboard  {
             e.preventDefault();
             let keysSet = document.querySelectorAll('.key');
             let whichKey = (this.properties.currentLanguage === 'ru') ? this.properties.whichKeyRU : this.properties.whichKeyEN
+            let shiftedType = (this.properties.currentLanguage === 'ru') ? this.properties.shiftRuCode : this.properties.shiftEnCode
             keysSet.forEach(elem => {
                 if (this.properties.codeKey[e.code] === elem.textContent) {
                     switch (elem.textContent) {
@@ -555,16 +608,21 @@ export class Keyboard  {
                         default: break;
                     }
                     
-                } else if (elem.textContent.toLowerCase() === whichKey[e.which]) {                    
+                } else if  (elem.textContent === shiftedType[e.code]) {                    
                     this._defaultKeyPress(e);
                     elem.classList.add('active')
-                } 
+                } else if (elem.textContent.toLowerCase() === whichKey[e.which]){
+                    this._defaultKeyPress(e);
+                    elem.classList.add('active')
+                }
             })
         })
 
         document.querySelector('.input').addEventListener('keyup', (e) => {
             let keysSet = document.querySelectorAll('.key');
             let whichKey = (this.properties.currentLanguage === 'ru') ? this.properties.whichKeyRU : this.properties.whichKeyEN
+            let shiftedType = (this.properties.currentLanguage === 'ru') ? this.properties.shiftRuCode : this.properties.shiftEnCode
+            
             keysSet.forEach(elem => {
                 if (this.properties.codeKey[e.code] === elem.textContent) {
                     elem.classList.remove('active');
@@ -577,6 +635,8 @@ export class Keyboard  {
                     
                 } else if (elem.textContent.toLowerCase() === whichKey[e.which]) {
                    
+                    elem.classList.remove('active')
+                } else if (elem.textContent === shiftedType[e.code]) {
                     elem.classList.remove('active')
                 }
             })
