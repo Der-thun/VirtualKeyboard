@@ -78,16 +78,25 @@ h1 {
 
 .keyboard .key.xl {
     grid-column: span 7;
-  }
-  .keyboard .key.back {
-    grid-column: span 9;
-  }
-  .keyboard .key.xxl {
+}
+
+.keyboard .key.xl.shiftright {
     grid-column: span 10;
-  }
-  .keyboard .key.space {
+}
+
+.keyboard .key.back {
+    grid-column: span 9;
+}
+
+.keyboard .key.xxl {
+    grid-column: span 10;
+}
+
+
+
+.keyboard .key.space {
     grid-column: span 19;
-  }
+}
 
 p {
     margin: 10px auto;
@@ -108,4 +117,6 @@ p {
 .caps-active::after {
     background-color:lawngreen;
 }
+
+
 
