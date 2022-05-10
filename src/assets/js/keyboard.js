@@ -43,7 +43,7 @@ export class Keyboard  {
             'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', "\\", 'Del',
             'CapsLock', "a", "s", "d", 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 
             'ShiftL', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/',  '▲', 'ShiftR',
-            'CtrlL', 'Win', 'AltR', 'Space', 'AltL', '◄', '▼', '►', 'CtrlR'
+            'CtrlL', 'Win', 'AltL', 'Space', 'AltR', '◄', '▼', '►', 'CtrlR'
         ],
 
         dictEnShiftFirstLine: {
