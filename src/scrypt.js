@@ -1,4 +1,4 @@
-import { Keyboard } from './assets/js/keyboard';
+import Keyboard from './assets/js/keyboard';
 
 import './assets/styles/style.css';
 // import favicon from './assets/favicon.ico'
