@@ -128,11 +128,10 @@ export class Keyboard  {
         this._keyPress();
     }
 
-    _createKeys(lang) {
-        console.log(lang)
+    _createKeys(lang) {        
         const fragment = document.createDocumentFragment();
         let dict = (lang === 'ru') ? this.properties.dictRu : this.properties.dictEn
-        //console.log(dict)
+        
         dict.forEach(elem => {
             const keyElement = document.createElement('button');
             keyElement.setAttribute("type", "button");
@@ -619,8 +618,7 @@ export class Keyboard  {
 
     getLocalStorage() {
         if(localStorage.getItem('lang')) {
-          this.properties.currentLanguage = localStorage.getItem('lang');
-         // this._createKeys(this.properties.currentLanguage);
+          this.properties.currentLanguage = localStorage.getItem('lang');         
         }    
       }
 };
