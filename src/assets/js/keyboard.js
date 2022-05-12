@@ -461,8 +461,15 @@ export default class Keyboard {
     const shiftedType = (this.properties.currentLanguage === 'ru') ? this.properties.shiftRuCode : this.properties.shiftEnCode;
     let letter;
 
-    if (typeof shiftedType[event.code] !== 'undefined') {
-      letter = this.properties.shiftReal ? shiftedType[event.code] : whichKey[event.which];
+    if (typeof whichKey[event.which] !== 'undefined') {
+      if (this.properties.shiftReal === true && typeof shiftedType[event.code] !== 'undefined') {
+        console.log(22)
+      letter = shiftedType[event.code];
+      } else {
+        letter = this.properties.capsLock
+        ? whichKey[event.which].toUpperCase() : whichKey[event.which].toLowerCase();
+      }
+      
     } else if (event.target.classList.contains('key')) {
       letter = event.target.textContent;
     }
