@@ -1,0 +1,18 @@
+{
+    "globals": {
+      "window": true,
+      "document": true
+      },
+    "extends": ["airbnb/base"],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false
+      },
+    "rules": {
+      "no-param-reassign": 0,
+      "no-restricted-syntax": 0
+    },
+    "env": {
+      "browser": true
+    }
+  }
